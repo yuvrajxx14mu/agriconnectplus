@@ -31,12 +31,17 @@ const Logistics = () => {
             .from('transactions')
             .select(`
               *,
-              listing:produce_listings(*,
-                crop_category:crop_categories(name),
-                crop_variety:crop_varieties(name)
+              produce_listings (
+                *,
+                crop_categories (name),
+                crop_varieties (name)
               ),
-              buyer:profiles!transactions_buyer_id_fkey(*),
-              seller:profiles!transactions_seller_id_fkey(*)
+              buyer_id (
+                *
+              ),
+              seller_id (
+                *
+              )
             `)
             .eq('id', transactionId)
             .single();
@@ -112,15 +117,15 @@ const Logistics = () => {
                   <h3 className="text-lg font-medium">Shipping Information</h3>
                   <div className="mt-2 space-y-2">
                     <p className="text-sm font-medium">
-                      {transaction?.buyer?.full_name || 'Buyer Name'}
+                      {transaction?.buyer_id?.full_name || 'Buyer Name'}
                     </p>
                     <p className="text-sm">
-                      {transaction?.buyer?.address || 'No address'},
-                      {transaction?.buyer?.district ? `, ${transaction?.buyer?.district}` : ''}, 
-                      {transaction?.buyer?.state || ''}
+                      {transaction?.buyer_id?.address || 'No address'},
+                      {transaction?.buyer_id?.district ? `, ${transaction?.buyer_id?.district}` : ''}, 
+                      {transaction?.buyer_id?.state || ''}
                     </p>
                     <p className="text-sm">
-                      {transaction?.buyer?.phone_number || 'No phone number'}
+                      {transaction?.buyer_id?.phone_number || 'No phone number'}
                     </p>
                   </div>
                 </div>

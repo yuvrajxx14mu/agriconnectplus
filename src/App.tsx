@@ -14,6 +14,7 @@ import KycVerification from "./pages/KycVerification";
 import QualityAssaying from "./pages/QualityAssaying";
 import PaymentGateway from "./pages/PaymentGateway";
 import Logistics from "./pages/Logistics";
+import Marketplace from "./pages/Marketplace";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/market-prices" element={<MarketPrices />} />
           <Route path="/trade/:listingId" element={<Trade />} />
           <Route path="/kyc-verification" element={<KycVerification />} />
