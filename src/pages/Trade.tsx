@@ -27,7 +27,8 @@ import {
   Info, 
   ShieldCheck, 
   BarChart4, 
-  Users 
+  Users,
+  CalendarDays
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -216,7 +217,6 @@ const Trade = () => {
     }
   };
 
-  // Format currency
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -284,7 +284,7 @@ const Trade = () => {
             <Badge className="text-sm px-3 py-1 self-start md:self-auto" variant={
               listing.status === 'active' ? 'default' : 
               listing.status === 'sold' ? 'destructive' : 
-              listing.status === 'verified' ? 'success' : 'secondary'
+              listing.status === 'verified' ? 'outline' : 'secondary'
             }>
               {listing.status?.toUpperCase()}
             </Badge>
@@ -302,7 +302,7 @@ const Trade = () => {
                     <div className="space-y-1">
                       <p className="text-sm text-muted-foreground">Category</p>
                       <div className="flex items-center space-x-2">
-                        <Leaf className="h-4 w-4 text-agri-primary" />
+                        <Tag className="h-4 w-4 text-agri-primary" />
                         <p className="font-medium">{listing.crop_category?.name}</p>
                       </div>
                     </div>
@@ -320,7 +320,7 @@ const Trade = () => {
                     <div className="space-y-1">
                       <p className="text-sm text-muted-foreground">Expected Price</p>
                       <div className="flex items-center space-x-2">
-                        <IndianRupee className="h-4 w-4 text-agri-primary" />
+                        <Tag className="h-4 w-4 text-agri-primary" />
                         <p className="font-medium">
                           {formatCurrency(listing.expected_price_per_quintal)}/quintal
                         </p>
@@ -431,7 +431,7 @@ const Trade = () => {
                           Your Price (₹ per quintal)
                         </label>
                         <div className="relative">
-                          <IndianRupee className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                          <Tag className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                           <Input
                             id="bidAmount"
                             type="number"
@@ -537,7 +537,7 @@ const Trade = () => {
                   )}
                   
                   <Button variant="outline" className="w-full">
-                    <MessageSquare className="mr-2 h-4 w-4" />
+                    <Tag className="mr-2 h-4 w-4" />
                     Message Seller
                   </Button>
                 </CardContent>
@@ -611,17 +611,17 @@ const Trade = () => {
                             </div>
                             <div className="flex items-center space-x-4 mt-2">
                               <div className="flex items-center space-x-1">
-                                <IndianRupee className="h-4 w-4 text-agri-primary" />
+                                <Tag className="h-4 w-4 text-agri-primary" />
                                 <span className="font-medium">{formatCurrency(bid.bid_price_per_quintal)}/quintal</span>
                               </div>
                               <span className="text-muted-foreground">•</span>
                               <div className="flex items-center space-x-1">
-                                <ShoppingBag className="h-4 w-4 text-agri-primary" />
+                                <Tag className="h-4 w-4 text-agri-primary" />
                                 <span>{bid.quantity_quintals} quintals</span>
                               </div>
                               <span className="text-muted-foreground">•</span>
                               <div className="flex items-center space-x-1">
-                                <Clock className="h-4 w-4 text-agri-primary" />
+                                <CalendarDays className="h-4 w-4 text-agri-primary" />
                                 <span className="text-sm text-muted-foreground">
                                   {format(new Date(bid.created_at), 'dd MMM, h:mm a')}
                                 </span>

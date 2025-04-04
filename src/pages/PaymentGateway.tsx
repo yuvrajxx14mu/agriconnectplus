@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -10,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-import { CreditCard, Phone, IndianRupee, Wallet, Building, Shield, Clock, CheckCircle2, ArrowRight, Truck, Loader2 } from "lucide-react";
+import { CreditCard, Smartphone, Building, Wallet, Shield, Clock, CheckCircle2, ArrowRight, Truck, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -40,7 +39,6 @@ const PaymentGateway = () => {
       
       if (transactionId) {
         try {
-          // Fetch transaction details
           const { data: transactionData, error: transactionError } = await supabase
             .from('transactions')
             .select(`
@@ -85,7 +83,6 @@ const PaymentGateway = () => {
   };
 
   const handlePaymentSubmit = () => {
-    // Validate payment details
     if (activePayMethod === "upi" && !paymentDetails.upi) {
       toast.error("Please enter a valid UPI ID");
       return;
@@ -100,7 +97,6 @@ const PaymentGateway = () => {
     
     setProcessingPayment(true);
     
-    // Simulate payment processing
     setTimeout(() => {
       processPayment();
     }, 2000);
@@ -108,7 +104,6 @@ const PaymentGateway = () => {
 
   const processPayment = async () => {
     try {
-      // Update transaction status
       const { error } = await supabase
         .from('transactions')
         .update({ 
@@ -119,12 +114,10 @@ const PaymentGateway = () => {
       
       if (error) throw error;
       
-      // Simulate payment confirmation
       setTimeout(() => {
         setProcessingPayment(false);
         setPaymentSuccess(true);
         
-        // Update transaction in local state
         setTransaction({
           ...transaction,
           status: 'processing',
@@ -140,7 +133,6 @@ const PaymentGateway = () => {
     }
   };
 
-  // Format currency
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -275,7 +267,6 @@ const PaymentGateway = () => {
         <div className="max-w-3xl mx-auto space-y-6">
           <h1 className="text-3xl font-bold">Complete Your Payment</h1>
           
-          {/* Transaction Summary */}
           <Card>
             <CardHeader>
               <CardTitle>Transaction Summary</CardTitle>
@@ -321,7 +312,6 @@ const PaymentGateway = () => {
             </CardContent>
           </Card>
           
-          {/* Payment Methods */}
           <Card>
             <CardHeader>
               <CardTitle>Choose Payment Method</CardTitle>
@@ -333,7 +323,7 @@ const PaymentGateway = () => {
               <Tabs value={activePayMethod} onValueChange={setActivePayMethod} className="w-full">
                 <TabsList className="grid grid-cols-3 mb-6">
                   <TabsTrigger value="upi" className="flex items-center space-x-2">
-                    <Phone className="h-4 w-4" />
+                    <Smartphone className="h-4 w-4" />
                     <span>UPI</span>
                   </TabsTrigger>
                   <TabsTrigger value="card" className="flex items-center space-x-2">
@@ -341,12 +331,11 @@ const PaymentGateway = () => {
                     <span>Card</span>
                   </TabsTrigger>
                   <TabsTrigger value="bank" className="flex items-center space-x-2">
-                    <Bank className="h-4 w-4" />
+                    <Building className="h-4 w-4" />
                     <span>Bank Transfer</span>
                   </TabsTrigger>
                 </TabsList>
                 
-                {/* UPI Tab */}
                 <TabsContent value="upi" className="mt-0 space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="upi">UPI ID</Label>
@@ -379,7 +368,6 @@ const PaymentGateway = () => {
                   </div>
                 </TabsContent>
                 
-                {/* Card Tab */}
                 <TabsContent value="card" className="mt-0 space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="cardNumber">Card Number</Label>
@@ -449,7 +437,6 @@ const PaymentGateway = () => {
                   </div>
                 </TabsContent>
                 
-                {/* Bank Transfer Tab */}
                 <TabsContent value="bank" className="mt-0 space-y-4">
                   <div className="bg-muted p-4 rounded-md">
                     <h3 className="font-medium mb-2">Bank Transfer Details</h3>

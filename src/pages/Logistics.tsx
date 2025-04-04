@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,8 +31,7 @@ const Logistics = () => {
             .from('transactions')
             .select(`
               *,
-              listing:produce_listings(
-                *,
+              listing:produce_listings(*,
                 crop_category:crop_categories(name),
                 crop_variety:crop_varieties(name)
               ),
