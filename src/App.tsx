@@ -9,6 +9,11 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import MarketPrices from "./pages/MarketPrices";
 import NotFound from "./pages/NotFound";
+import Trade from "./pages/Trade";
+import KycVerification from "./pages/KycVerification";
+import QualityAssaying from "./pages/QualityAssaying";
+import PaymentGateway from "./pages/PaymentGateway";
+import Logistics from "./pages/Logistics";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +28,12 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/market-prices" element={<MarketPrices />} />
+          <Route path="/trade/:listingId" element={<Trade />} />
+          <Route path="/kyc-verification" element={<KycVerification />} />
+          <Route path="/quality-assaying" element={<QualityAssaying />} />
+          <Route path="/payment/:transactionId" element={<PaymentGateway />} />
+          <Route path="/logistics" element={<Logistics />} />
+          <Route path="/logistics/:transactionId" element={<Logistics />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
