@@ -1,5 +1,7 @@
+
 import React from "react";
 import FarmerDashboard from "./FarmerDashboard";
+import AdminDashboard from "./AdminDashboard";
 import { PackageIcon, BarChart3, Users, ShoppingBag, Truck } from "lucide-react";
 
 interface RoleBasedDashboardProps {
@@ -83,29 +85,7 @@ const RoleBasedDashboard = ({ role }: RoleBasedDashboardProps) => {
         </div>
       );
     case "admin":
-      return (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Admin Dashboard</h2>
-          <p>Welcome to the Admin Dashboard. Here, administrators can manage users, monitor platform activity, and configure settings.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="p-4 border rounded-md">
-              <Users className="h-6 w-6 text-gray-500 mb-2" />
-              <h3 className="font-semibold text-lg">User Management</h3>
-              <p className="text-sm text-gray-600">Manage user accounts and roles.</p>
-            </div>
-            <div className="p-4 border rounded-md">
-              <BarChart3 className="h-6 w-6 text-gray-500 mb-2" />
-              <h3 className="font-semibold text-lg">Platform Analytics</h3>
-              <p className="text-sm text-gray-600">Monitor platform usage and performance.</p>
-            </div>
-            <div className="p-4 border rounded-md">
-              <PackageIcon className="h-6 w-6 text-gray-500 mb-2" />
-              <h3 className="font-semibold text-lg">Content Management</h3>
-              <p className="text-sm text-gray-600">Manage content and settings.</p>
-            </div>
-          </div>
-        </div>
-      );
+      return <AdminDashboard />;
     default:
       return <p>Please select a role to view the dashboard.</p>;
   }

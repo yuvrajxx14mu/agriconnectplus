@@ -32,6 +32,7 @@ const Dashboard = () => {
                 <SelectItem value="fpo">FPO User</SelectItem>
                 <SelectItem value="buyer">Buyer/Trader</SelectItem>
                 <SelectItem value="supplier">Input Supplier</SelectItem>
+                <SelectItem value="admin">Platform Admin</SelectItem>
               </SelectContent>
             </Select>
             <p className="text-xs text-blue-700 mt-1">
