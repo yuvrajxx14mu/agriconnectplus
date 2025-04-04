@@ -10,6 +10,13 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { supabase } from "@/integrations/supabase/client";
+import type { Database } from "@/integrations/supabase/types";
+
+type MarketPrice = Database['public']['Tables']['market_prices']['Row'] & {
+  crop_categories: { name: string } | null;
+  crop_varieties: { name: string } | null;
+  locations: { name: string; district: string; state: string } | null;
+};
 
 // Custom tooltip for the chart
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -48,7 +55,7 @@ const fetchMarketPrices = async (cropCategoryId: string) => {
   }
   
   // Transform data for chart
-  const chartData = data.map(price => ({
+  const chartData = (data as MarketPrice[]).map(price => ({
     date: format(new Date(price.date), 'MMM dd'),
     price: price.modal_price,
     location: price.locations?.name || 'Unknown',
@@ -57,7 +64,7 @@ const fetchMarketPrices = async (cropCategoryId: string) => {
   }));
   
   return {
-    prices: data,
+    prices: data as MarketPrice[],
     chartData
   };
 };
