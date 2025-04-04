@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +10,25 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-import { Truck, Leaf, Calendar, IndianRupee, Loader2, BarChart4, MessageSquare, ShoppingBag, Clock } from "lucide-react";
+import { 
+  Check, 
+  X, 
+  AlertTriangle, 
+  ChevronDown, 
+  Loader2, 
+  PlusCircle, 
+  MinusCircle, 
+  File, 
+  Smartphone, 
+  Calendar, 
+  Tag, 
+  MapPin, 
+  Truck, 
+  Info, 
+  ShieldCheck, 
+  BarChart4, 
+  Users 
+} from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -388,7 +405,7 @@ const Trade = () => {
                         rel="noopener noreferrer"
                         className="text-blue-600 hover:underline flex items-center space-x-1"
                       >
-                        <FileText className="h-4 w-4" />
+                        <File className="h-5 w-5 text-muted-foreground" />
                         <span>View Quality Certificate</span>
                       </a>
                     </div>
@@ -514,7 +531,7 @@ const Trade = () => {
                   
                   {listing.seller?.phone_number && (
                     <Button variant="outline" className="w-full">
-                      <Phone className="mr-2 h-4 w-4" />
+                      <Smartphone className="h-5 w-5 text-muted-foreground" />
                       Call Seller
                     </Button>
                   )}

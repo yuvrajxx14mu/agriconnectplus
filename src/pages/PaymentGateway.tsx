@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-import { CreditCard, Phone, IndianRupee, Wallet, Bank, Shield, Clock, CheckCircle2, ArrowRight, Truck, Loader2 } from "lucide-react";
+import { CreditCard, Phone, IndianRupee, Wallet, Building, Shield, Clock, CheckCircle2, ArrowRight, Truck, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
